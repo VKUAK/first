@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <climits>
 
 const int ROWS = 15;
 const int COLS = 2;
@@ -9,7 +10,7 @@ void sortRow(int arr[ROWS][COLS], int row) {
     std::sort(arr[row], arr[row] + COLS);
 }
 
-// Головна функція для знаходження номерів рядків з мінімальною сумою елементів
+// Функція для знаходження номерів сусідніх рядків з мінімальною сумою елементів
 void findMinSumRows(int arr[ROWS][COLS], int& row1, int& row2) {
     int minSum = INT_MAX;
 
@@ -27,7 +28,7 @@ void findMinSumRows(int arr[ROWS][COLS], int& row1, int& row2) {
 int main() {
     int array[ROWS][COLS];
 
-    // Введення даних
+    // Введення елементів двовимірного масиву
     std::cout << "Введіть елементи двовимірного масиву розміром " << ROWS << "x" << COLS << ":\n";
     for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < COLS; ++j) {
@@ -36,18 +37,18 @@ int main() {
         }
     }
 
-    // Фільтрування рядків з міню елементами
+    // Знаходження номерів рядків з мінімальною сумою елементів
     int minSumRow1, minSumRow2;
     findMinSumRows(array, minSumRow1, minSumRow2);
 
-    // Результати
+    // Виведення результатів
     std::cout << "\nНомера рядків з мінімальною сумою елементів: " << minSumRow1 + 1 << " та " << minSumRow2 + 1 << "\n";
 
-    // Сортування рядків за зростанням
+    // Сортування кожного рядка за зростанням
     sortRow(array, minSumRow1);
     sortRow(array, minSumRow2);
 
-    // Показ відсортованого масиву
+    // Виведення відсортованого масиву
     std::cout << "\nВідсортований масив:\n";
     for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < COLS; ++j) {
@@ -55,6 +56,3 @@ int main() {
         }
         std::cout << "\n";
     }
-
-    return 0;
-}
